@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.fragment.PatternLockFragment">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="108dp"
+        android:fontFamily="@font/nanum_gothic"
+        android:text="LOCK SCREEN 패턴"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/text_type1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="141dp"
+        android:text="패턴을 입력해 주세요"
+        android:textColor="#b3ffffff"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/text_type2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="141dp"
+        android:text="동일한 패턴을 다시 입력해 주세요"
+        android:textColor="#b3ffffff"
+        android:textSize="14sp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/text_type3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="141dp"
+        android:text="패턴이 일치하지 않습니다. 다시 입력해 주세요"
+        android:textColor="#b3ffffff"
+        android:textSize="14sp"
+        android:visibility="gone" />
+
+    <com.andrognito.patternlockview.PatternLockView
+        android:id="@+id/lock_pattern_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        app:aspectRatioEnabled="true"
+        app:correctStateColor="@color/white"
+        app:dotNormalSize="16dp"
+        app:dotSelectedSize="22dp"
+        app:normalStateColor="@color/white"
+        app:wrongStateColor="#fdf384" />
+</FrameLayout>

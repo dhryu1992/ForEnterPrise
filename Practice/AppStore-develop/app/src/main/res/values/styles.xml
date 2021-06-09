@@ -1,0 +1,23 @@
+<resources>
+
+    <style name="Widget.Theme.AppStore.ActionBar.Fullscreen" parent="Widget.AppCompat.ActionBar">
+        <item name="android:background">@color/black_overlay</item>
+    </style>
+
+    <style name="Widget.Theme.AppStore.ButtonBar.Fullscreen" parent="">
+        <item name="android:background">@color/black_overlay</item>
+        <item name="android:buttonBarStyle">?android:attr/buttonBarStyle</item>
+    </style>
+
+    <style name="TextAppearance.AppStore.Tabs" parent="">
+        <item name="android:textSize">14sp</item>
+        <item name="fontFamily">@font/nanum_gothic</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="ReviewRatingBar" parent="">
+        <item name="colorControlActivated">#ffab17</item>
+        <item name="colorControlNormal">#bbbbbb</item>
+    </style>
+
+</resources>

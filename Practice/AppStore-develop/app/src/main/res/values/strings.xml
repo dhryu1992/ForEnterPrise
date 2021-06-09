@@ -1,0 +1,55 @@
+<resources>
+    <string name="app_name">appStore</string>
+
+    <string name="login_id_require">사용자 아이디를 입력하세요.</string>
+    <string name="login_password_require">사용자 패스워드를 입력하세요.</string>
+    <string name="login_sslvpn_passowrd_require">SSLVPN 패스워드 입력하세요.</string>
+    <string name="login_rooting_device">루팅된 디바이스에서는 사용할 수 없습니다.\n 앱을 종료합니다.</string>
+    <string name="login_button_text">로그인</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="tab_title_1">실행</string>
+    <string name="tab_title_2">전체</string>
+    <string name="tab_title_3">필수</string>
+    <string name="tab_title_4">업데이트</string>
+    <string name="title_notice">공지사항</string>
+    <string name="title_detail">상세보기</string>
+
+    <string name="side_nav_memu_notice">공지사항</string>
+    <string name="side_nav_menu_alarm">알림설정</string>
+    <string name="side_nav_menu_loguout">로그아웃</string>
+
+    <string name="error_toast">에러로그를 저장 했습니다.</string>
+    <string name="error_toast_fail">에러로그를 전송실패</string>
+
+    <string name="button_app_install">설치</string>
+    <string name="button_app_delete">삭제</string>
+    <string name="button_app_update">업데이트</string>
+    <string name="button_app_execute">실행</string>
+    <string name="delete_app">DELETE APP</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_lock_screen">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="sub_title_intro">APP 소개</string>
+    <string name="sub_title_preview">미리보기</string>
+
+    <string name="default_notification_channel_id" translatable="false">store</string>
+    <string name="sub_title_review">평점 및 리뷰</string>
+    <string name="button_write_review">평가하기</string>
+    <string name="button_edit_review">수정</string>
+    <string name="button_delete_review">삭제</string>
+    <string name="title_error_log_page">ERROR LOG</string>
+    <string name="button_delete_log">삭제</string>
+    <string name="button_submit_log">전송</string>
+    <string name="button_select_all_log">전체선택</string>
+    <string name="text_setting">설정</string>
+    <string name="text_setting_push">PUSH 알림설정</string>
+    <string name="text_setting_lock_screen">LOCK SCREEN 사용</string>
+    <string name="text_setting_lock_pattern">LOCK SCREEN 패턴 설정</string>
+    <string name="text_setting_lock_pin">LOCK SCREEN PIN 설정</string>
+    <string name="text_hint_search">앱 이름을 입력하세요</string>
+
+</resources>

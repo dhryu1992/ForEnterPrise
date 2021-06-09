@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hint_tp_name">이름을 입력해 주세요</string>
+    <string name="toast_msg_db_clear">DB Clear!!</string>
+    <string name="toast_msg_db_error">DB Error!!</string>
+    <string name="toast_msg_net_error">Network Error!!</string>
+</resources>

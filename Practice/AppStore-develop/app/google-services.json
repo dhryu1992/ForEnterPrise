@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "172356726392",
+    "firebase_url": "https://appstore-deecc.firebaseio.com",
+    "project_id": "appstore-deecc",
+    "storage_bucket": "appstore-deecc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:172356726392:android:3a6e6a03a8f8a6f462c78d",
+        "android_client_info": {
+          "package_name": "com.awesome.appstore"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "172356726392-gcbho1ekcsn3prpp87rnaipna7q895m7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpSpxrCww1xqIiTmrFOIJ8IeRAzJf1YVs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "172356726392-gcbho1ekcsn3prpp87rnaipna7q895m7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

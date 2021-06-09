@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.awesome.appstore.database.AppInfo" />
+
+        <variable
+            name="badge"
+            type="com.awesome.appstore.database.PushCount" />
+
+        <variable
+            name="view"
+            type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/const_item_icon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+
+        android:visibility="@{item.appName == null ? view.INVISIBLE : view.VISIBLE}">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/const_app_icon_stroke"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginBottom="7dp"
+            android:background="@drawable/selector_bg_launcher_app"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="63dp"
+                android:layout_height="63dp"
+                android:background="@drawable/shape_launcher_app_background"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/image_app_icon"
+                    android:layout_width="62dp"
+                    android:layout_height="62dp"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="17dp"
+            android:minWidth="17dp"
+            android:background="@drawable/badge_bg_red"
+            android:elevation="5dp"
+            android:paddingHorizontal="5dp"
+            android:visibility="@{badge.count > 0 ? view.VISIBLE : view.GONE}"
+            app:layout_constraintEnd_toEndOf="@+id/const_app_icon_stroke"
+            app:layout_constraintTop_toTopOf="@+id/const_app_icon_stroke">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="5dp"
+                android:fontFamily="@font/nanum_gothic_bold"
+                android:letterSpacing="0"
+                android:text="@{String.valueOf(badge.count)}"
+                android:textColor="@color/white"
+                android:lines="1"
+                android:textSize="10sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="16" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <TextView
+            android:id="@+id/text_app_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nanum_gothic_bold"
+            android:text="@{item.appName}"
+            android:textSize="12sp"
+            android:maxLength="12"
+            app:layout_constraintEnd_toEndOf="@+id/const_app_icon_stroke"
+            app:layout_constraintStart_toStartOf="@+id/const_app_icon_stroke"
+            app:layout_constraintTop_toBottomOf="@+id/const_app_icon_stroke" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

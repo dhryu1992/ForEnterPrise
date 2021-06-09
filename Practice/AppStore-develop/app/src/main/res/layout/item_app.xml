@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.awesome.appstore.database.AppInfo" />
+
+        <variable
+            name="view"
+            type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/const_item_frame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/bg_launcher_app">
+
+        <TextView
+            android:id="@+id/txt_app_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nanum_gothic_bold"
+            android:ellipsize="end"
+            android:ems="7"
+            android:maxLines="1"
+            android:layout_marginStart="11dp"
+            android:text="@{item.appName}"
+            android:textColor="#191919"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="@+id/image_app_thum"
+            app:layout_constraintStart_toEndOf="@+id/image_app_thum"
+            app:layout_constraintTop_toTopOf="@+id/image_app_thum"
+            tools:text="앱 이름" />
+
+        <ImageView
+            android:id="@+id/image_app_thum"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@mipmap/ic_launcher_round"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txt_app_ver"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="118dp"
+            android:fontFamily="@font/nanum_gothic"
+            android:text="@{item.versionName}"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:maxLength="8"
+            app:layout_constraintBottom_toBottomOf="@+id/image_app_thum"
+            app:layout_constraintEnd_toEndOf="@+id/constraintLayout2"
+            app:layout_constraintTop_toTopOf="@+id/image_app_thum"
+            tools:text="앱 버전" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="@{item.progress != -1? view.GONE : view.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="@+id/image_app_thum"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/image_app_thum">
+
+            <TextView
+                android:id="@+id/btn_app_install"
+                android:layout_width="59dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="14dp"
+                android:background="@drawable/selector_button_type1"
+                android:fontFamily="@font/nanum_gothic"
+                android:gravity="center"
+                android:text="@string/button_app_install"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="11sp"
+                android:visibility="@{item.installStatus.equals(String.valueOf('N'))? view.VISIBLE : view.GONE}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="설치" />
+
+            <TextView
+                android:id="@+id/btn_app_install_complete"
+                android:layout_width="59dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="14dp"
+                android:background="@drawable/selector_button_type2"
+                android:fontFamily="@font/nanum_gothic"
+                android:text="설치완료"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="11sp"
+                android:visibility="@{item.installStatus.equals(String.valueOf('Y'))? view.VISIBLE : view.GONE}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!--            <Button-->
+            <!--                android:id="@+id/btn_app_delete"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginRight="10dp"-->
+            <!--                android:text="@string/button_app_delete"-->
+            <!--                android:visibility="@{item.installStatus.equals(String.valueOf('Y'))? (item.releaseType.equals(String.valueOf('M'))?view.GONE : view.VISIBLE ) : view.GONE}"-->
+            <!--                app:layout_constraintEnd_toStartOf="@+id/btn_app_execute"-->
+            <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+            <TextView
+                android:id="@+id/btn_app_update"
+                android:layout_width="59dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="14dp"
+                android:background="@drawable/selector_button_type1"
+                android:fontFamily="@font/nanum_gothic"
+                android:gravity="center"
+                android:text="@string/button_app_update"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="11sp"
+                android:visibility="@{item.updateStatus.equals(String.valueOf('Y'))? view.VISIBLE : view.GONE}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="업데이트" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/progressBar"
+            android:layout_width="87dp"
+            android:layout_height="3dp"
+            android:layout_marginEnd="14dp"
+            android:max="100"
+            android:progress="@{item.progress}"
+            android:visibility="@{item.progress != -1? view.VISIBLE : view.GONE}"
+            app:indicatorColor="#14afc5"
+            app:layout_constraintBottom_toBottomOf="@+id/image_app_thum"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/image_app_thum"
+            app:trackColor="#c3c1c1"
+            app:trackThickness="3dp" />
+
+        <!--        <ProgressBar-->
+        <!--            android:visibility="@{item.progress != -1? view.VISIBLE : view.GONE}"-->
+        <!--            android:paddingRight="10dp"-->
+        <!--            android:id="@+id/progressBar"-->
+        <!--            style="?android:attr/progressBarStyleHorizontal"-->
+        <!--            android:layout_width="150dp"-->
+        <!--            android:layout_height="40dp"-->
+        <!--            android:max="100"-->
+        <!--            android:progress="@{item.progress}"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="6dp"
+            android:background="#dddddd"
+            app:layout_constraintTop_toBottomOf="@+id/image_app_thum" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

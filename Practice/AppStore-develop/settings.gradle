@@ -1,0 +1,5 @@
+include ':push_receiver'
+include ':exafe_appdefence_v4.0.1_release'
+include ':exafe_keysec_v1.0.5_release'
+include ':app'
+rootProject.name = "AppStore"

@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.awesome.appstore.activity.viewmodel.TabActivityViewModel" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="width"
+            type="Integer" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/drawer_view"
+        style="@style/Widget.Design.NavigationView"
+        android:layout_width="@{width, default = match_parent}"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/linear_side_nav_header"
+            android:layout_width="match_parent"
+            android:layout_height="166dp"
+            android:background="#f5f5f5"
+            android:clickable="true"
+            android:padding="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/image_user_profile"
+                android:layout_width="78dp"
+                android:layout_height="78dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/avatar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/text_user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/nanum_gothic_bold"
+                android:textColor="#191919"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@+id/image_user_profile"
+                app:layout_constraintStart_toStartOf="@+id/image_user_profile"
+                app:layout_constraintTop_toBottomOf="@+id/image_user_profile"
+                tools:text="홍길동" />
+
+            <TextView
+                android:id="@+id/text_user_department"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanum_gothic_bold"
+                android:textColor="#757575"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@+id/image_user_profile"
+                app:layout_constraintStart_toStartOf="@+id/image_user_profile"
+                app:layout_constraintTop_toBottomOf="@+id/text_user_name"
+                tools:text="경영지원부서" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+<!--        <ImageView-->
+<!--            android:id="@+id/image_profile_zoom"-->
+<!--            android:layout_width="140dp"-->
+<!--            android:layout_height="140dp"-->
+<!--            android:visibility="invisible"-->
+<!--            app:layout_constraintBottom_toBottomOf="@+id/linear_side_nav_header"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/const_nav_1"
+            style="@style/Widget.AppCompat.Toolbar.Button.Navigation"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:onClick="@{() -> viewModel.goNotice()}"
+            app:layout_constraintTop_toBottomOf="@+id/linear_side_nav_header">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gainsboro"
+                app:layout_constraintBottom_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/image_notice"
+                android:layout_width="22dp"
+                android:layout_height="21dp"
+                android:layout_marginStart="20dp"
+                android:src="@drawable/ic_about"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:fontFamily="@font/nanum_gothic_bold"
+                android:text="@string/side_nav_memu_notice"
+                android:textColor="#3a3a3a"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/image_notice"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="14dp"
+                android:layout_marginStart="6dp"
+                android:padding="0dp"
+                android:scaleType="center"
+                android:src="@drawable/ic_noti_new"
+                android:visibility="@{viewModel.badge5 > 0? View.VISIBLE:View.GONE}"
+                app:layout_constraintBottom_toBottomOf="@+id/textView"
+                app:layout_constraintStart_toEndOf="@+id/textView"
+                app:layout_constraintTop_toTopOf="@+id/textView" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/const_nav_2"
+            style="@style/Widget.AppCompat.Toolbar.Button.Navigation"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:onClick="@{() -> viewModel.onClickSetting()}"
+            app:layout_constraintTop_toBottomOf="@+id/const_nav_1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gainsboro"
+                app:layout_constraintBottom_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/image_setting"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_marginStart="20dp"
+                android:src="@drawable/icon_set"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:fontFamily="@font/nanum_gothic_bold"
+                android:text="@string/text_setting"
+                android:textColor="#3a3a3a"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/image_setting"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/const_nav_3"
+            style="@style/Widget.AppCompat.Toolbar.Button.Navigation"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:onClick="@{() -> viewModel.onClickLogout()}"
+            app:layout_constraintTop_toBottomOf="@+id/const_nav_2">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gainsboro"
+                app:layout_constraintBottom_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/image_logout"
+                android:layout_width="16dp"
+                android:layout_height="22dp"
+                android:layout_marginStart="23dp"
+                android:src="@drawable/icon_logout"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="17dp"
+                android:fontFamily="@font/nanum_gothic_bold"
+                android:text="@string/side_nav_menu_loguout"
+                android:textColor="#3a3a3a"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/image_logout"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/text_store_version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="ver 1.0.1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ver "
+            app:layout_constraintBottom_toBottomOf="@+id/text_store_version"
+            app:layout_constraintEnd_toStartOf="@+id/text_store_version" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

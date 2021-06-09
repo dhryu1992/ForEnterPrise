@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.awesome.appstore.activity.viewmodel.TabActivityViewModel" />
+    </data>
+
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".activity.TabActivity">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#2752AA"
+                android:theme="@style/AppTheme.AppBarOverlay">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="62dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="56dp"
+                        android:layout_height="match_parent"
+                        android:onClick="@{() -> viewModel.sideNavOpen()}">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="21dp"
+                            android:layout_marginLeft="17dp"
+                            android:layout_marginTop="20dp"
+                            android:src="@drawable/ic_menu"
+                            android:tint="@color/white" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/text_app_bar_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textSize="21.5sp"
+                        android:letterSpacing="0.02"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginStart="15dp"
+                        android:maxLength="15"
+                        android:maxLines="1"
+                        android:fontFamily="@font/nanum_square_aceb"
+                        android:text="@string/app_name"
+                        android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title" />
+
+                    <androidx.appcompat.widget.SearchView
+                        android:id="@+id/search_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layoutDirection="rtl"
+                        app:iconifiedByDefault="true"
+                        app:queryHint="@string/text_hint_search" />
+                </LinearLayout>
+
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tabs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    app:tabSelectedTextColor="#2752AA"
+                    app:tabTextColor="@color/black"
+                    app:tabTextAppearance="@style/TextAppearance.AppStore.Tabs"
+                    app:tabIndicatorColor="@color/black"
+                    app:tabIndicatorFullWidth="false"/>
+                <!--                <androidx.constraintlayout.widget.ConstraintLayout-->
+                <!--                    android:id="@+id/const_trash"-->
+                <!--                    android:visibility="gone"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:background="@color/white"-->
+                <!--                    android:orientation="horizontal" >-->
+
+                <!--                    <ImageView-->
+                <!--                        android:id="@+id/image_trash"-->
+                <!--                        android:layout_width="50dp"-->
+                <!--                        android:layout_height="50dp"-->
+                <!--                        android:src="@drawable/ic_delete_forever_24px"-->
+                <!--                        app:layout_constraintBottom_toBottomOf="parent"-->
+                <!--                        app:layout_constraintEnd_toEndOf="parent"-->
+                <!--                        app:layout_constraintStart_toStartOf="parent"-->
+                <!--                        app:layout_constraintTop_toTopOf="parent" />-->
+                <!--                </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/container_search"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="60dp"
+                android:padding="10dp" />
+
+
+            <!--            <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+            <!--                android:id="@+id/fab"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_gravity="bottom|end"-->
+            <!--                android:layout_margin="@dimen/fab_margin"-->
+            <!--                app:srcCompat="@android:drawable/ic_dialog_dialer" />-->
+
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+        <include
+            android:id="@+id/layout_side_navigation"
+            layout="@layout/layout_side_navigation" />
+
+    </androidx.drawerlayout.widget.DrawerLayout>
+</layout>

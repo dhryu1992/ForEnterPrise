@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/Theme.MaterialComponents"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black"
+        tools:context=".activity.FullSizeImageActivity">
+
+        <ImageView
+            android:id="@+id/image_slider_item"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitCenter" />
+
+
+        <TextView
+            android:id="@+id/text_index"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/index_indicator_bg"
+            android:fontFamily="@font/nanum_square_b"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="3/8" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floating_exit_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:backgroundTint="#33000000"
+            android:clickable="true"
+            android:visibility="gone"
+            android:src="@drawable/ic_close_24px"
+            app:tint="@color/white"
+            app:borderWidth="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+        <!--            android:id="@+id/const_exit_container"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="50dp"-->
+        <!--            android:background="#1A000000"-->
+        <!--            android:visibility="gone"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toTopOf="parent">-->
+
+        <!--            <androidx.constraintlayout.widget.ConstraintLayout-->
+        <!--                android:id="@+id/linear_exit_btn"-->
+        <!--                android:layout_width="50dp"-->
+        <!--                android:layout_height="50dp"-->
+        <!--                app:layout_constraintEnd_toEndOf="parent"-->
+        <!--                app:layout_constraintTop_toTopOf="parent">-->
+
+        <!--                <ImageView-->
+        <!--                    android:layout_width="wrap_content"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:src="@drawable/ic_close_24px"-->
+        <!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--                    app:layout_constraintEnd_toEndOf="parent"-->
+        <!--                    app:layout_constraintStart_toStartOf="parent"-->
+        <!--                    app:layout_constraintTop_toTopOf="parent"-->
+        <!--                    app:tint="@color/white" />-->
+        <!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+        <!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

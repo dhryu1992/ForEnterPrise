@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.awesome.appstore.activity.viewmodel.SettingActivityViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".activity.SettingActivity">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/top_bar"
+            android:layout_width="match_parent"
+            android:layout_height="62dp"
+            android:background="@color/colorPrimary"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="10dp"
+                android:onClick="@{() -> viewModel.onClickExit()}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="24dp"
+                android:layout_height="19dp"
+                android:layout_marginStart="18dp"
+                android:src="@drawable/icon_back"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:fontFamily="@font/nanum_gothic_bold"
+                android:text="@string/text_setting"
+                android:textColor="@color/cardview_light_background"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imageView"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/top_bar">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/const_setting_alarm"
+                android:layout_width="match_parent"
+                android:layout_height="41dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/text_setting_alarm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="17dp"
+                    android:fontFamily="@font/nanum_gothic_bold"
+                    android:text="@string/text_setting_push"
+                    android:textColor="#191919"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/switch_setting_alarm"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/switch_setting_alarm" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_setting_alarm"
+                    android:layout_width="55dp"
+                    android:layout_height="21dp"
+                    android:layout_marginEnd="17dp"
+                    android:checked="@{viewModel.pushAlarm}"
+                    android:onClick="@{()->viewModel.setPush()}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:switchMinWidth="55dp"
+                    android:thumb="@drawable/thumb_switch"
+
+                    app:track="@drawable/selector_switch_track" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/lightgrey"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/const_setting_lock"
+                android:layout_width="match_parent"
+                android:layout_height="41dp"
+                android:onClick="@{()->viewModel.showLockScreenDisable()}"
+                android:visibility="@{viewModel.lockScreenEnable? View.VISIBLE: View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/const_setting_alarm">
+
+                <TextView
+                    android:id="@+id/text_setting_lock"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="17dp"
+                    android:fontFamily="@font/nanum_gothic_bold"
+                    android:text="@string/text_setting_lock_screen"
+                    android:textColor="#191919"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/switch_lock"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/switch_lock" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_lock"
+                    android:layout_width="55dp"
+                    android:layout_height="21dp"
+                    android:layout_marginEnd="17dp"
+                    android:checked="@{viewModel.lockScreen}"
+                    android:enabled="@{viewModel.lockScreenEnable}"
+                    android:onClick="@{()->viewModel.setLockScreen()}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:switchMinWidth="55dp"
+                    android:thumb="@drawable/thumb_switch"
+                    app:track="@drawable/selector_switch_track" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/lightgrey"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/const_setting_lock_pattern"
+                style="@style/Widget.AppCompat.Toolbar.Button.Navigation"
+                android:layout_width="match_parent"
+                android:layout_height="41dp"
+                android:enabled="@{viewModel.lockScreenEnable}"
+                android:onClick="@{()->viewModel.setPatternLock()}"
+                android:visibility="@{viewModel.lockScreenEnable? View.VISIBLE: View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/const_setting_lock">
+
+                <TextView
+                    android:id="@+id/text_setting_lock_pattern"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="17dp"
+                    android:fontFamily="@font/nanum_gothic_bold"
+                    android:text="@string/text_setting_lock_pattern"
+                    android:textColor="#191919"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/lightgrey"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/const_setting_lock_pin"
+                style="@style/Widget.AppCompat.Toolbar.Button.Navigation"
+                android:layout_width="match_parent"
+                android:layout_height="41dp"
+                android:enabled="@{viewModel.lockScreenEnable}"
+                android:onClick="@{()->viewModel.setPinLock()}"
+                android:visibility="@{viewModel.lockScreenEnable? View.VISIBLE: View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/const_setting_lock_pattern">
+
+                <TextView
+                    android:id="@+id/text_setting_lock_pin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="17dp"
+                    android:fontFamily="@font/nanum_gothic_bold"
+                    android:text="@string/text_setting_lock_pin"
+                    android:textColor="#191919"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/lightgrey"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

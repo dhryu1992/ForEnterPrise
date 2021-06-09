@@ -1,0 +1,200 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "5312ddc1726e94668772b8eb68f9ca80",
+    "entities": [
+      {
+        "tableName": "AppInfo",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`packageName` TEXT NOT NULL, `idx` INTEGER NOT NULL, `appName` TEXT NOT NULL, `appType` TEXT NOT NULL, `appVersion` TEXT NOT NULL, `iconURL` TEXT NOT NULL, `downloadURL` TEXT NOT NULL, `updateType` TEXT NOT NULL, `favoriteIndex` TEXT NOT NULL, `favoriteStatus` TEXT NOT NULL, `regDate` TEXT NOT NULL, `installStatus` TEXT NOT NULL, `installDate` TEXT NOT NULL, PRIMARY KEY(`packageName`))",
+        "fields": [
+          {
+            "fieldPath": "packageName",
+            "columnName": "packageName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "idx",
+            "columnName": "idx",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "appName",
+            "columnName": "appName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "appType",
+            "columnName": "appType",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "appVersion",
+            "columnName": "appVersion",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "iconURL",
+            "columnName": "iconURL",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "downloadURL",
+            "columnName": "downloadURL",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "updateType",
+            "columnName": "updateType",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "favoriteIndex",
+            "columnName": "favoriteIndex",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "favoriteStatus",
+            "columnName": "favoriteStatus",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "regDate",
+            "columnName": "regDate",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "installStatus",
+            "columnName": "installStatus",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "installDate",
+            "columnName": "installDate",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "packageName"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "ErrorLog",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`reportId` TEXT NOT NULL, `appVersionCode` TEXT NOT NULL, `androidVersion` TEXT NOT NULL, `phoneModel` TEXT NOT NULL, `userCrashDate` TEXT NOT NULL, `stackTrace` TEXT NOT NULL, `filePath` TEXT NOT NULL, PRIMARY KEY(`reportId`))",
+        "fields": [
+          {
+            "fieldPath": "reportId",
+            "columnName": "reportId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "appVersionCode",
+            "columnName": "appVersionCode",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "androidVersion",
+            "columnName": "androidVersion",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "phoneModel",
+            "columnName": "phoneModel",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "userCrashDate",
+            "columnName": "userCrashDate",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "stackTrace",
+            "columnName": "stackTrace",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "filePath",
+            "columnName": "filePath",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "reportId"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "Notice",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idx` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `title` TEXT NOT NULL, `contents` TEXT NOT NULL, `regDate` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "idx",
+            "columnName": "idx",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "contents",
+            "columnName": "contents",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "regDate",
+            "columnName": "regDate",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "idx"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '5312ddc1726e94668772b8eb68f9ca80')"
+    ]
+  }
+}

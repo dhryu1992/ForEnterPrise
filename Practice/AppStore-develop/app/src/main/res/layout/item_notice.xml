@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.awesome.appstore.database.Notice" />
+        <import type="android.view.View"/>
+        <import type="android.text.Html"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/const_notice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="17dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/text_notice_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:layout_marginTop="2dp"
+                android:text="@{item.subject}"
+                android:fontFamily="@font/nanum_gothic_bold"
+                android:textColor="#191919"
+                android:maxWidth="270dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="공지사항 제목" />
+
+            <ImageView
+                android:id="@+id/image_notice_new"
+                android:layout_width="34dp"
+                android:layout_height="13dp"
+                android:padding="0dp"
+                android:scaleType="center"
+                android:src="@drawable/ic_noti_new"
+                android:layout_marginStart="10dp"
+                android:visibility="@{item.isRead().equals(String.valueOf('N'))? View.VISIBLE: View.GONE}"
+                app:layout_constraintBottom_toBottomOf="@+id/text_notice_date"
+                app:layout_constraintStart_toEndOf="@+id/text_notice_date"
+                app:layout_constraintTop_toTopOf="@+id/text_notice_date" />
+
+            <TextView
+                android:id="@+id/text_notice_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:padding="0dp"
+                android:text="@{item.regDt}"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_notice_title"
+                tools:text="1999.10.23 10:33" />
+
+            <ImageView
+                android:id="@+id/img_down"
+                android:layout_width="19dp"
+                android:layout_height="10dp"
+                android:src="@drawable/icon_down"
+                app:layout_constraintBottom_toBottomOf="@+id/text_notice_date"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/text_notice_title" />
+
+            <ImageView
+                android:id="@+id/img_up"
+                android:layout_width="19dp"
+                android:layout_height="10dp"
+                android:src="@drawable/icon_up"
+                app:layout_constraintBottom_toBottomOf="@+id/text_notice_date"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/text_notice_title" />
+
+            <!--    expandView-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/const_expand"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:visibility="gone"
+                android:background="#e7e7e7"
+                app:layout_constraintTop_toBottomOf="@+id/text_notice_date">
+
+<!--                <TextView-->
+<!--                    android:id="@+id/text_notice_content"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="@{Html.fromHtml(item.content, Html.FROM_HTML_MODE_LEGACY)}"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent"-->
+<!--                    tools:text="공지사항 내용 확장부" />-->
+                <WebView
+                    android:id="@+id/web_test"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="WebViewLayout" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <!--펼쳐지게 해야 함-->
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

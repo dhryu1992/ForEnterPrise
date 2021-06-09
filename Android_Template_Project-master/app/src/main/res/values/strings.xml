@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Awesomebly Android Template Project</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hint_tp_name">이름을 입력해 주세요</string>
+    <string name="toast_msg_db_clear">DB Clear!!</string>
+    <string name="toast_msg_db_error">DB Error!!</string>
+    <string name="toast_msg_net_error">Network Error!!</string>
+    <string name="post_user_id">UserId : </string>
+    <string name="post_id">Id : </string>
+    <string name="post_title">Title : </string>
+    <string name="post_body">Body : </string>
+
+</resources>

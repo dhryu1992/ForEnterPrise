@@ -1,0 +1,238 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'kotlin-android-extensions'
+    id 'kotlinx-serialization'
+    id 'com.google.gms.google-services'
+}
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.2"
+
+    defaultConfig {
+        applicationId "com.awesome.appstore"
+        minSdkVersion 26
+        targetSdkVersion 30
+        versionCode 3
+        versionName "1.0.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.incremental": "true"]
+                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
+                arguments = ['autovaluegson.defaultCollectionsToEmpty': 'true']
+            }
+        }
+    }
+    signingConfigs {
+
+    }
+    signingConfigs {
+        config {
+            keyAlias 'storekey'
+            keyPassword 'store123!@#'
+            storeFile file('../storekey')
+            storePassword 'store123!@#'
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+
+            android.applicationVariants.all { variant ->
+                variant.outputs.all { output ->
+                    def file = output.outputFile
+                    def date = new Date()
+                    def formattedDate = date.format('MMdd')
+                    outputFileName = new File(
+                            "./",
+                            file.name.replace("app", "store" + "_" + defaultConfig.versionName + "_" + formattedDate)
+                    )
+                }
+            }
+        }
+        debug {
+            minifyEnabled false
+            ext.alwaysUpdateBuild = false
+            aaptOptions.cruncherEnabled = false
+            splits.abi.enable = false
+            splits.density.enable = false
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    flavorDimensions "produdct"
+    productFlavors {
+        MOCK {
+            dimension "produdct"
+            buildConfigField 'boolean', 'IS_MOCK', 'true'
+        }
+        PRODUCT {
+            dimension "produdct"
+            buildConfigField 'boolean', 'IS_MOCK', 'false'
+        }
+
+    }
+    buildFeatures.dataBinding = true
+}
+ext {
+    roomVersion = '2.2.5'
+    acraVersion = '5.7.0'
+    daggerVersion = '2.29.1'
+    sethoVersion = '1.5.1'
+    retrofitVersion = '2.9.0'
+    xfetchVersion = '3.1.5'
+    kotlin_version = "1.4.10"
+}
+
+dependencies {
+
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+
+    implementation 'androidx.core:core-ktx:1.3.2'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation "com.google.android.material:material:1.3.0-beta01"
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.1'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.3.1'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+    implementation platform('com.google.firebase:firebase-bom:26.0.0')
+    implementation 'com.google.firebase:firebase-messaging-ktx'
+    implementation 'com.google.firebase:firebase-messaging:21.0.0'
+
+    testImplementation 'junit:junit:4.13.1'
+    testImplementation 'org.mockito:mockito-core:3.5.11'
+
+    // Core library
+    androidTestImplementation 'androidx.test:core:1.3.0'
+
+    // AndroidJUnitRunner and JUnit Rules
+    androidTestImplementation 'androidx.test:runner:1.3.0'
+    androidTestImplementation 'androidx.test:rules:1.3.0'
+
+    // Assertions
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.ext:truth:1.3.0'
+    androidTestImplementation 'com.google.truth:truth:1.0.1'
+    androidTestImplementation 'org.hamcrest:hamcrest-library:2.2'
+
+    //glide
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+
+    //dagger2
+    implementation "com.google.dagger:dagger:$daggerVersion"
+    implementation "com.google.dagger:dagger-android:$daggerVersion"
+    implementation "com.google.dagger:dagger-android-support:$daggerVersion"
+    kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
+    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
+
+    //logger
+    implementation 'com.orhanobut:logger:2.2.0'
+
+    //room
+    implementation "androidx.room:room-runtime:$roomVersion"
+    implementation "androidx.room:room-ktx:$roomVersion"
+    kapt  "androidx.room:room-compiler:$roomVersion"
+
+    //setho
+    implementation "com.facebook.stetho:stetho-urlconnection:$sethoVersion"
+    implementation "com.facebook.stetho:stetho-okhttp3:$sethoVersion"
+    implementation "com.facebook.stetho:stetho-js-rhino:$sethoVersion"
+    implementation "com.facebook.stetho:stetho-okhttp3:$sethoVersion"
+
+//    implementation 'com.squareup.okhttp3:okhttp:4.9.0'
+
+    //retrofit2
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava:$retrofitVersion"
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.11.0'
+    implementation 'io.reactivex:rxandroid:1.2.1'
+    implementation 'io.reactivex:rxjava:1.3.8'
+    implementation 'com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2'
+
+
+    //joda
+    implementation 'com.master.android:permissionhelper:2.1'
+    implementation 'net.danlew:android.joda:2.9.9.3'
+
+    //filedownload
+//    implementation "androidx.tonyodev.fetch2:xfetch2:$xfetchVersion"
+//    implementation "androidx.tonyodev.fetch2rx:xfetch2rx:$xfetchVersion"
+//    implementation "androidx.tonyodev.fetch2okhttp:xfetch2okhttp:$xfetchVersion"
+
+    //acra
+    implementation "ch.acra:acra-core:$acraVersion"
+//    implementation "ch.acra:acra-mail:$acraVersion"
+    implementation "ch.acra:acra-toast:$acraVersion"
+    implementation "ch.acra:acra-dialog:$acraVersion"
+    implementation "ch.acra:acra-http:$acraVersion"
+    compileOnly "com.google.auto.service:auto-service-annotations:1.0-rc6"
+    kapt  "com.google.auto.service:auto-service:1.0-rc6"
+
+    //JWTDecode
+    implementation 'com.auth0.android:jwtdecode:2.0.0'
+
+
+//    Kotlin Extension
+    implementation "androidx.collection:collection-ktx:1.1.0"
+    implementation "androidx.fragment:fragment-ktx:1.2.5"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.2.0"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0"
+    implementation "androidx.navigation:navigation-runtime-ktx:2.3.1"
+    implementation "androidx.navigation:navigation-fragment-ktx:2.3.1"
+    implementation "androidx.navigation:navigation-ui-ktx:2.3.1"
+    implementation "androidx.room:room-ktx:2.2.5"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
+    implementation "androidx.work:work-runtime-ktx:2.4.0"
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1"
+
+    implementation 'com.google.guava:guava:27.0.1-android'
+
+    //lockview
+    implementation "com.andrognito.patternlockview:patternlockview:1.0.0"
+    implementation "com.andrognito.pinlockview:pinlockview:2.1.0"
+
+
+    //swiperefresh
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+
+    //RootChecker
+    implementation 'com.scottyab:rootbeer-lib:0.0.8'
+
+    //EventBus
+    implementation 'org.greenrobot:eventbus:3.0.0'
+
+    //PRDownloader
+    implementation 'com.mindorks.android:prdownloader:0.6.0'
+
+    //mdm..
+    implementation files('libs/INICrypto_v4.1.2.jar')
+    implementation files('libs/SecuwaySSLService-20170627.jar')
+    implementation files('libs/ExafeMDM-api.jar')
+    implementation files('libs/MagicSE2.jar')
+    implementation files('libs/V3MobileEnterpriseInterface.jar')
+    implementation project(path: ':exafe_keysec_v1.0.5_release')
+    implementation project(path: ':exafe_appdefence_v4.0.1_release')
+    implementation project(path: ':push_receiver')
+    implementation "org.jetbrains.kotlin:kotlin-reflect"
+
+
+}

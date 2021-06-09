@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.awesome.appstore.activity.viewmodel.ErrorLogActivityViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".activity.ErrorLogActivity">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/const_err_app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="62dp"
+            android:background="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:id="@+id/linear_err_back"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                app:layout_constraintBottom_toBottomOf="@+id/image_err_back"
+                app:layout_constraintEnd_toEndOf="@+id/image_err_back"
+                app:layout_constraintStart_toStartOf="@+id/image_err_back"
+                app:layout_constraintTop_toTopOf="@+id/image_err_back" />
+
+            <ImageView
+                android:id="@+id/image_err_back"
+                android:layout_width="24dp"
+                android:layout_height="19dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="21dp"
+                android:src="@drawable/icon_back"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/text_page_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:text="@string/title_error_log_page"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:fontFamily="@font/nanum_square_b"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/image_err_back"
+                app:layout_constraintStart_toEndOf="@+id/image_err_back"
+                app:layout_constraintTop_toTopOf="@+id/image_err_back" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/const_ctrl_btn"
+            android:layout_width="match_parent"
+            android:layout_height="74dp"
+            app:layout_constraintTop_toBottomOf="@+id/const_err_app_bar">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <CheckBox
+                    android:id="@+id/check_all"
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    android:layout_marginStart="18dp"
+                    android:onClick="@{()->viewModel.onClickSelectAll()}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/text_all_check"
+                    style="@style/TextAppearance.MaterialComponents.Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:fontFamily="@font/nanum_square_b"
+                    android:text="@string/button_select_all_log"
+                    android:textColor="#747474"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/check_all"
+                    app:layout_constraintTop_toTopOf="@+id/check_all" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/text_delete_log"
+                style="@style/TextAppearance.MaterialComponents.Button"
+                android:layout_width="57dp"
+                android:layout_height="26dp"
+                android:gravity="center"
+                android:layout_marginEnd="4dp"
+                android:fontFamily="@font/nanum_square_b"
+                android:onClick="@{()->viewModel.onClickDelete()}"
+                android:text="@string/button_delete_log"
+                android:textColor="#8c8f93"
+                android:clickable="true"
+                android:background="@drawable/review_btn_background"
+                app:layout_constraintBottom_toBottomOf="@+id/text_submit_log"
+                app:layout_constraintEnd_toStartOf="@+id/text_submit_log"
+                app:layout_constraintTop_toTopOf="@+id/text_submit_log" />
+
+            <TextView
+                android:id="@+id/text_submit_log"
+                style="@style/TextAppearance.MaterialComponents.Button"
+                android:layout_width="57dp"
+                android:layout_height="26dp"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:layout_marginEnd="17dp"
+                android:fontFamily="@font/nanum_square_b"
+                android:background="@drawable/err_btn_background"
+                android:clickable="true"
+                android:onClick="@{()->viewModel.onClickSubmit()}"
+                android:text="@string/button_submit_log"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/constraintLayout4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/constraintLayout4" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/lightgrey"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_error_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/const_ctrl_btn" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

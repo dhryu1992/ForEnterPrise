@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.awesome.appstore.activity.viewmodel.DetailActivityViewModel" />
+
+        <variable
+            name="view"
+            type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".activity.DetailActivity">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/const_top_bar"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:background="@drawable/layer_4"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:onClick="@{() -> viewModel.onClickExit()}"
+                app:layout_constraintBottom_toBottomOf="@+id/image_btn_back"
+                app:layout_constraintEnd_toEndOf="@+id/image_btn_back"
+                app:layout_constraintStart_toStartOf="@+id/image_btn_back"
+                app:layout_constraintTop_toTopOf="@+id/image_btn_back" />
+
+            <ImageView
+                android:id="@+id/image_btn_back"
+                android:layout_width="24dp"
+                android:layout_height="19dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="17dp"
+                android:src="@drawable/icon_back_b"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="17dp"
+                android:fontFamily="@font/nanum_square_b"
+                android:text="@{viewModel.appInfo.appName}"
+                android:textColor="#353637"
+                android:textSize="18sp"
+                android:ellipsize="end"
+                android:ems="14"
+                android:maxLines="1"
+                app:layout_constraintStart_toEndOf="@+id/image_btn_back"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="test-app" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/const_top_bar">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/const_install"
+                    android:layout_width="match_parent"
+                    android:layout_height="216dp"
+                    android:background="@color/cardview_light_background"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/image_app_thum"
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
+                        android:layout_marginStart="17dp"
+                        android:layout_marginTop="30dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/text_app_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:fontFamily="@font/nanum_gothic_bold"
+                        android:maxWidth="162dp"
+                        android:text="@{viewModel.appInfo.appName}"
+                        android:ellipsize="end"
+                        android:ems="10"
+                        android:maxLines="2"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toEndOf="@+id/image_app_thum"
+                        app:layout_constraintTop_toTopOf="@+id/image_app_thum"
+                        tools:text="app name" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/nanum_gothic_bold"
+                        android:text="@{viewModel.appInfo.versionName}"
+                        android:textColor="#848484"
+                        android:textSize="14sp"
+                        app:layout_constraintStart_toEndOf="@+id/image_app_thum"
+                        app:layout_constraintTop_toBottomOf="@+id/text_app_name"
+                        tools:text="ver1.1.1" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:visibility="@{viewModel.downloadProgress > -1 ? view.GONE : view.VISIBLE}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.constraintlayout.widget.Guideline
+                            android:id="@+id/guideline"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            app:layout_constraintGuide_percent="0.5"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/button_install"
+                            android:layout_width="0dp"
+                            android:layout_height="38dp"
+                            android:layout_marginHorizontal="17dp"
+                            android:layout_marginBottom="22dp"
+                            android:background="@drawable/selector_btn_positive"
+                            android:fontFamily="@font/nanum_gothic"
+                            android:gravity="center"
+                            android:onClick="@{() -> viewModel.onClickAppInstall()}"
+                            android:text="@string/button_app_install"
+                            android:textColor="@color/white"
+                            android:textSize="16sp"
+                            android:visibility="@{viewModel.appInfo.installStatus.equals(String.valueOf('N'))? view.VISIBLE : view.GONE}"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <TextView
+                            android:id="@+id/button_execute"
+                            android:layout_width="0dp"
+                            android:layout_height="38dp"
+                            android:layout_marginEnd="17dp"
+                            android:layout_marginBottom="22dp"
+                            android:background="@drawable/selector_btn_positive"
+                            android:fontFamily="@font/nanum_gothic"
+                            android:gravity="center"
+                            android:onClick="@{() -> viewModel.onClickAppExecute()}"
+                            android:text="@string/button_app_execute"
+                            android:textColor="@color/white"
+                            android:textSize="16sp"
+                            android:layout_marginStart="7dp"
+                            android:visibility="@{viewModel.appInfo.installStatus.equals(String.valueOf('Y'))? view.VISIBLE : view.GONE}"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/guideline" />
+
+                        <TextView
+                            android:id="@+id/button_delete"
+                            android:layout_width="0dp"
+                            android:layout_height="38dp"
+                            android:layout_marginStart="18dp"
+                            android:layout_marginBottom="22dp"
+                            android:background="@drawable/selector_btn_nagative"
+                            android:fontFamily="@font/nanum_gothic"
+                            android:gravity="center"
+                            android:onClick="@{() -> viewModel.onClickAppDelete()}"
+                            android:text="@string/button_app_delete"
+                            android:layout_marginEnd="7dp"
+                            android:textColor="@color/white"
+                            android:textSize="16sp"
+                            android:visibility="@{viewModel.appInfo.installStatus.equals(String.valueOf('Y'))? view.VISIBLE : view.GONE}"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/guideline"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <TextView
+                            android:id="@+id/button_update"
+                            android:layout_width="0dp"
+                            android:layout_height="38dp"
+                            android:layout_marginEnd="17dp"
+                            android:layout_marginBottom="22dp"
+                            android:background="@drawable/selector_btn_positive"
+                            android:fontFamily="@font/nanum_gothic"
+                            android:gravity="center"
+                            android:onClick="@{() -> viewModel.onClickAppUpdate()}"
+                            android:text="@string/button_app_update"
+                            android:layout_marginStart="7dp"
+                            android:textColor="@color/white"
+                            android:textSize="16sp"
+                            android:visibility="@{viewModel.appInfo.updateStatus.equals(String.valueOf('Y'))? view.VISIBLE : view.GONE}"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/guideline" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <com.google.android.material.progressindicator.LinearProgressIndicator
+                        android:layout_width="312dp"
+                        android:layout_height="wrap_content"
+                        android:max="100"
+                        android:progress="@{viewModel.downloadProgress}"
+                        android:visibility="@{viewModel.downloadProgress > -1? view.VISIBLE : view.GONE}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/image_app_thum"
+                        app:trackThickness="10dp" />
+
+                    <!--                    <ProgressBar-->
+                    <!--                        android:id="@+id/progress_download"-->
+                    <!--                        style="?android:attr/progressBarStyleHorizontal"-->
+                    <!--                        android:layout_width="150dp"-->
+                    <!--                        android:layout_height="40dp"-->
+                    <!--                        android:layout_marginEnd="10dp"-->
+                    <!--                        android:max="100"-->
+                    <!--                        android:progress="@{viewModel.downloadProgress}"-->
+                    <!--                        android:visibility="@{viewModel.downloadProgress > -1? view.VISIBLE : view.GONE}"-->
+                    <!--                        app:layout_constraintBottom_toBottomOf="parent"-->
+                    <!--                        app:layout_constraintEnd_toEndOf="parent"-->
+                    <!--                        app:layout_constraintTop_toTopOf="parent" />-->
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/const_preview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/const_install">
+
+                    <!--                    <TextView-->
+                    <!--                        android:id="@+id/text_preview"-->
+                    <!--                        android:layout_width="match_parent"-->
+                    <!--                        android:layout_height="30dp"-->
+                    <!--                        android:background="@color/cardview_shadow_start_color"-->
+                    <!--                        android:gravity="center"-->
+                    <!--                        android:text="@string/sub_title_preview"-->
+                    <!--                        app:layout_constraintEnd_toEndOf="parent"-->
+                    <!--                        app:layout_constraintStart_toStartOf="parent"-->
+                    <!--                        app:layout_constraintTop_toTopOf="parent" />-->
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycler_app_img_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="203dp"
+                        android:background="#F1F1F1"
+                        android:paddingStart="18dp"
+                        android:paddingTop="12dp"
+                        android:paddingEnd="6dp"
+                        android:paddingBottom="15dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/const_summary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/const_preview">
+
+                    <TextView
+                        android:id="@+id/text_summary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="17dp"
+                        android:layout_marginTop="26dp"
+                        android:fontFamily="@font/nanum_square_aceb"
+                        android:gravity="center"
+                        android:text="@string/sub_title_intro"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="17dp"
+                        android:text="@{viewModel.appDetailContent}"
+                        android:textColor="#666666"
+                        android:textSize="14sp"
+                        app:layout_constraintTop_toBottomOf="@+id/text_summary" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/const_evaluation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="@{viewModel.isExistMyReview()? view.GONE : view.VISIBLE}"
+                    app:layout_constraintTop_toBottomOf="@+id/const_summary">
+
+                    <TextView
+                        android:id="@+id/text_evaluation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="17dp"
+                        android:layout_marginTop="31dp"
+                        android:fontFamily="@font/nanum_square_aceb"
+                        android:gravity="center"
+                        android:text="앱 평가하기"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="38dp"
+                        android:layout_marginHorizontal="17dp"
+                        android:layout_marginTop="11dp"
+                        android:background="@drawable/review_btn_background"
+                        android:clickable="true"
+                        android:fontFamily="@font/nanum_square_b"
+                        android:gravity="center"
+                        android:onClick="@{() -> viewModel.onClickEvaluation()}"
+                        android:text="리뷰 작성하기"
+                        android:textColor="#505050"
+                        android:textSize="16sp"
+                        app:layout_constraintTop_toBottomOf="@+id/text_evaluation"
+                        tools:layout_editor_absoluteX="17dp" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/const_rating"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/const_evaluation">
+
+                    <TextView
+                        android:id="@+id/text_rating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="17dp"
+                        android:layout_marginTop="40dp"
+                        android:fontFamily="@font/nanum_square_aceb"
+                        android:gravity="center"
+                        android:text="@string/sub_title_review"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <TextView
+                        android:id="@+id/text_score"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="13dp"
+                        android:fontFamily="@font/nanum_gothic"
+                        android:text="@{viewModel.starPoint.toString()}"
+                        android:textSize="26.5sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/rating_indicator"
+                        app:layout_constraintStart_toEndOf="@+id/rating_indicator"
+                        app:layout_constraintTop_toTopOf="@+id/rating_indicator"
+                        tools:text="4.4" />
+
+                    <RatingBar
+                        android:id="@+id/rating_indicator"
+                        style="@style/Widget.AppCompat.RatingBar.Indicator"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="67dp"
+                        android:layout_marginTop="21dp"
+                        android:isIndicator="true"
+                        android:max="5"
+                        android:numStars="5"
+                        android:rating="@{viewModel.starPoint}"
+                        android:stepSize="0.1"
+                        android:theme="@style/ReviewRatingBar"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/text_rating" />
+
+                    <LinearLayout
+                        android:id="@+id/linear_divider"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginHorizontal="17dp"
+                        android:layout_marginTop="22dp"
+                        android:background="#505050"
+                        android:orientation="horizontal"
+                        app:layout_constraintTop_toBottomOf="@+id/rating_indicator" />
+
+
+                    <!--                    <TextView-->
+                    <!--                        android:layout_width="wrap_content"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:layout_marginEnd="10dp"-->
+                    <!--                        android:onClick="@{() -> viewModel.onClickEvaluation()}"-->
+                    <!--                        android:text="@string/button_write_review"-->
+                    <!--                        android:textSize="15sp"-->
+                    <!--                        android:textStyle="bold"-->
+                    <!--                        android:visibility="@{viewModel.isExistMyReview? view.GONE : view.VISIBLE}"-->
+                    <!--                        app:layout_constraintBottom_toBottomOf="@+id/text_score"-->
+                    <!--                        app:layout_constraintEnd_toEndOf="parent"-->
+                    <!--                        app:layout_constraintTop_toTopOf="@+id/text_score" />-->
+
+                    <!--                    <TextView-->
+                    <!--                        android:id="@+id/textView2"-->
+                    <!--                        android:layout_width="wrap_content"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:layout_marginEnd="10dp"-->
+                    <!--                        android:onClick="@{() -> viewModel.onClickReviewEdit(String.valueOf('U'))}"-->
+                    <!--                        android:text="@string/button_edit_review"-->
+                    <!--                        android:textSize="15sp"-->
+                    <!--                        android:textStyle="bold"-->
+                    <!--                        android:visibility="@{viewModel.isExistMyReview? view.VISIBLE : view.GONE}"-->
+                    <!--                        app:layout_constraintBottom_toBottomOf="@+id/text_score"-->
+                    <!--                        app:layout_constraintEnd_toEndOf="parent"-->
+                    <!--                        app:layout_constraintTop_toTopOf="@+id/text_score" />-->
+
+                    <!--                    <TextView-->
+                    <!--                        android:layout_width="wrap_content"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:layout_marginEnd="10dp"-->
+                    <!--                        android:onClick="@{() -> viewModel.onClickReviewEdit(String.valueOf('D'))}"-->
+                    <!--                        android:text="@string/button_delete_review"-->
+                    <!--                        android:textSize="15sp"-->
+                    <!--                        android:textStyle="bold"-->
+                    <!--                        android:visibility="@{viewModel.isExistMyReview? view.VISIBLE : view.GONE}"-->
+                    <!--                        app:layout_constraintBottom_toBottomOf="@+id/text_score"-->
+                    <!--                        app:layout_constraintEnd_toStartOf="@+id/textView2"-->
+                    <!--                        app:layout_constraintTop_toTopOf="@+id/text_score" />-->
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycler_review_list"
+                        android:paddingTop="15dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@+id/linear_divider" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <com.google.android.material.progressindicator.LinearProgressIndicator
+                    android:id="@+id/progress_review"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:indeterminate="true"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.core.widget.NestedScrollView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
